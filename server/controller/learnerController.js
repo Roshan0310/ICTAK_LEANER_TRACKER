@@ -4,26 +4,26 @@ const Learner = require("../model/learnerModel");
 const ApiFeatures = require("../utils/apiFeatures");
 
 // Adding single learner -- Admin and Training Head
-exports.createLearner = catchAsyncError( async (req,res,next)=>{
-
+exports.createLearner = catchAsyncError(async (req, res, next) => {
   const learner = await Learner.create(req.body);
 
   res.status(201).json({
-    success:true,
-    learner
-  })
+    success: true,
+    learner,
+  });
 });
-
 
 // Adding Bulk amount of learners by using .csv files -- Training Head and Admin
 
-
-
-
 //Get all Learners detials
 exports.getAllLearners = catchAsyncError(async (req, res) => {
+  const resultPerPage = 10;
 
- const apiFeatures = new ApiFeatures(Learner.find(),req.query).search().filter();
+  const apiFeatures = new ApiFeatures(Learner.find(), req.query)
+    .search()
+    .filter()
+    .pagination(resultPerPage);
+
   const learners = await apiFeatures.query;
 
   res.status(200).json({
@@ -67,20 +67,23 @@ exports.updateLearner = catchAsyncError(async (req, res, next) => {
 });
 
 // placment status update
-exports.updatePlacementStatus = catchAsyncError (async (req,res,next)=>{
-    const learner = await Learner.findById(req.params.id);
+exports.updatePlacementStatus = catchAsyncError(async (req, res, next) => {
+  const learner = await Learner.findById(req.params.id);
 
-    if (!learner) {
-        return next(new ErrorHandler("Learner not found !", 404));
-      }
+  if (!learner) {
+    return next(new ErrorHandler("Learner not found !", 404));
+  }
 
-      learner = await Learner.findByIdAndUpdate(req.params.id , req.params.placementStatus,{
-        new: true,
-        runValidators: true,
-        useFindAndModify: false,
-      })
-})
-
+  learner = await Learner.findByIdAndUpdate(
+    req.params.id,
+    req.params.placementStatus,
+    {
+      new: true,
+      runValidators: true,
+      useFindAndModify: false,
+    }
+  );
+});
 
 //Delete Learners - Admin and Training Head
 exports.deleteLearner = catchAsyncError(async (req, res, next) => {
@@ -97,5 +100,3 @@ exports.deleteLearner = catchAsyncError(async (req, res, next) => {
     message: "Learner Deleted Successfully",
   });
 });
-
-
