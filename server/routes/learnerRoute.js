@@ -71,7 +71,7 @@ router.post("/learner/csv", uploads.single("file"), (req, res) => {
 
 
 //upload csv learners by reading line by line from file first and then save to db
-router.post("/learner/csv/upload", parseCsv, (req, res) => {
+router.post("/learner/upload", parseCsv, (req, res) => {
     const { buffer } = req.file;
     const dataFromCSV = [];
 
