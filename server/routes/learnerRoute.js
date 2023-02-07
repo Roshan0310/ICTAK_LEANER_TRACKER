@@ -6,6 +6,8 @@ const uploadCsv = require("@fast-csv/parse");
 const streamifier = require("streamifier");
 const parseCsv = multer().single("file");
 
+const Learner = require("../model/learnerModel");
+
 const csv = require("csvtojson");
 let storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -17,7 +19,7 @@ let storage = multer.diskStorage({
 });
 let uploads = multer({ storage: storage });
 
-const Learner = require("../model/learnerModel");
+
 
 const { getAllLearners , createLearner, updateLearner, deleteLearner, getSingleLearnerDetials, updatePlacementStatus} = require("../controller/learnerController");
 
@@ -36,7 +38,7 @@ router.route("/learner/:id").put(updateLearner).delete(deleteLearner).get(getSin
 
 
 
-
+//Uploading csv to the database
 router.post("/learner/csv", uploads.single("file"), (req, res) => {
     csv()
         .fromFile(req.file.path)
@@ -66,6 +68,8 @@ router.post("/learner/csv", uploads.single("file"), (req, res) => {
             res.json(error)
         })
 });
+
+
 //upload csv learners by reading line by line from file first and then save to db
 router.post("/learner/csv/upload", parseCsv, (req, res) => {
     const { buffer } = req.file;
@@ -73,7 +77,7 @@ router.post("/learner/csv/upload", parseCsv, (req, res) => {
 
     streamifier
         .createReadStream(buffer)
-        .pipe(uploadCsv.parse({ headers: true, ignoreEmpty: true })) // <== this is @fast-csv/parse!!
+        .pipe(uploadCsv.parse({ headers: true, ignoreEmpty: true })) 
         .on("data", (row) => {
             var obj = {};
           

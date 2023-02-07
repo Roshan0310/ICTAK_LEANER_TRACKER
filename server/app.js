@@ -17,8 +17,14 @@ app.use('/upload', express.static('./uploads'));
 
 //Routes
 const learner = require("./routes/learnerRoute");
-app.use("/api/v1",learner);
+const batch = require("./routes/batchRoute");
+const course = require("./routes/courseRoute");
+const project = require("./routes/projectRoute")
 
+app.use("/api/v1",learner);
+app.use("/api/v1",batch);
+app.use("/api/v1",course);
+app.use("/api/v1",project);
 
 
 //Middleware for error
