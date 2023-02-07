@@ -17,6 +17,7 @@ dotenv.config({path:"config/.env"});
 connectDatabase();
 
 
+
 //connecting to the port
 let port = parseInt(process.env.PORT);
 const server =app.listen(port,()=>{

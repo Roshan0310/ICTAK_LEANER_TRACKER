@@ -8,7 +8,6 @@ const leanerSchema = new mongoose.Schema({
   learnerName: {
     type: String,
     required: [true, "Please enter name of the learner"],
-    trim: true,
   },
   courseName: {
     type: String,
@@ -29,6 +28,7 @@ const leanerSchema = new mongoose.Schema({
     type: String,
     enum: ["Qualified", "Incomplete"],
     required: [true,"Please select the status of the course"],
+    default: "enrolled"
   },
   placementStatus: {
     type: String,
