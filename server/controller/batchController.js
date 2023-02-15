@@ -16,10 +16,11 @@ exports.createBatch = catchAsyncError(async(req,res,next)=>{
 exports.getAllBatches = catchAsyncError(async(req,res,next)=>{
     const batches = await Batch.find();
 
-    res.status(200).json({
-        success: true,
-        batches
-      });
+    // res.status(200).json({
+    //     success: true,
+    //     batches
+    //   });
+    res.send(batches).status(200);
 });
 
 //Get single batch detial --Admin

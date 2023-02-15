@@ -11,17 +11,17 @@ const leanerSchema = new mongoose.Schema({
   },
   courseName: {
     type: String,
-    enum: ["FSD", "DSA", "ML-AI", "RPA", "ST", "CSA"],
+    // enum: ["FSD", "DSA", "ML-AI", "RPA", "ST", "CSA"],
     required: [true,"Please select any couse"],
   },
   project: {
     type: String,
-    enum: ["ICTAK", "KKEM", "NORKA", "KDISC"],
+    // enum: ["ICTAK", "KKEM", "NORKA", "KDISC"],
     required: [true,"Please select project"],
   },
   batch: {
     type: String,
-    enum: ["May_22", "Jun_22", "Jul_22", "Aug_22","Oct_22"],
+    // enum: ["May_22", "Jun_22", "Jul_22", "Aug_22","Oct_22"],
     required: [true,"Please select the batch"],
   },
   courseStatus: {
