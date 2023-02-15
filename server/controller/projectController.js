@@ -17,10 +17,11 @@ exports.createProject = catchAsyncError(async(req,res,next)=>{
 exports.getAllProjects = catchAsyncError(async(req,res,next)=>{
     const projects = await Project.find();
 
-    res.status(200).json({
-        success: true,
-        projects,
-      });
+    // res.status(200).json({
+    //     success: true,
+    //     projects,
+    //   });
+    res.send(projects).status(200);
 });
 
 //Get single project Detials Admin

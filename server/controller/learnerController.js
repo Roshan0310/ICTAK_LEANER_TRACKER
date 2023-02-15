@@ -13,7 +13,7 @@ exports.createLearner = catchAsyncError(async (req, res, next) => {
   });
 });
 
-// Adding Bulk amount of learners by using .csv files -- Training Head and Admin
+
 
 //Get all Learners detials
 exports.getAllLearners = catchAsyncError(async (req, res) => {
@@ -26,10 +26,11 @@ exports.getAllLearners = catchAsyncError(async (req, res) => {
 
   const learners = await apiFeatures.query;
 
-  res.status(200).json({
-    success: true,
-    learners,
-  });
+  // res.status(200).json({
+  //   success: true,
+  //   learners,
+  // });
+  res.send(learners).status(200)
 });
 
 //Get single Learner detials
@@ -66,7 +67,7 @@ exports.updateLearner = catchAsyncError(async (req, res, next) => {
   });
 });
 
-// placment status update
+// placment status update --Placement Officer
 exports.updatePlacementStatus = catchAsyncError(async (req, res, next) => {
   const learner = await Learner.findById(req.params.id);
 

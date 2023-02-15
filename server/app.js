@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const cors = require("cors")
 
 
 const app = new express();
@@ -10,6 +11,7 @@ const errorMiddleware = require("./middleware/error")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 app.use('/upload', express.static('./uploads'));
 
 

@@ -9,6 +9,9 @@ const parseCsv = multer().single("file");
 const Learner = require("../model/learnerModel");
 
 const csv = require("csvtojson");
+
+const { getAllLearners , createLearner, updateLearner, deleteLearner, getSingleLearnerDetials, updatePlacementStatus} = require("../controller/learnerController");
+
 let storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, './uploads');
@@ -21,20 +24,20 @@ let uploads = multer({ storage: storage });
 
 
 
-const { getAllLearners , createLearner, updateLearner, deleteLearner, getSingleLearnerDetials, updatePlacementStatus} = require("../controller/learnerController");
 
 
 
 
 
 
-
-
+//Get all Learners (GET)
 router.route("/learners").get(getAllLearners);
 
+//Create a Learner (POST)
 router.route("/learner/new").post(createLearner);
 
-router.route("/learner/:id").put(updateLearner).delete(deleteLearner).get(getSingleLearnerDetials).get(updatePlacementStatus);
+//Update,Delete,Get single learner detials,Update Placement detials (PUT,DELETE and GET)
+router.route("/learner/:id").put(updateLearner).delete(deleteLearner).get(getSingleLearnerDetials).put(updatePlacementStatus);
 
 
 
@@ -71,7 +74,7 @@ router.post("/learner/csv", uploads.single("file"), (req, res) => {
 
 
 //upload csv learners by reading line by line from file first and then save to db
-router.post("/learner/csv/upload", parseCsv, (req, res) => {
+router.post("/learner/upload", parseCsv, (req, res) => {
     const { buffer } = req.file;
     const dataFromCSV = [];
 

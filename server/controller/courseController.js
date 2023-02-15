@@ -16,10 +16,11 @@ exports.createCourse = catchAsyncError(async (req, res, next) => {
 exports.getAllCourses = catchAsyncError(async (req, res, next) => {
   const courses = await Course.find();
 
-  res.status(200).json({
-    success: true,
-    courses,
-  });
+  // res.status(200).json({
+  //   success: true,
+  //   courses,
+  // });
+  res.send(courses).status(200);
 });
 
 //Get single Course detials --Admin
