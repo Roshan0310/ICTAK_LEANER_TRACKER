@@ -22,11 +22,12 @@ const learner = require("./routes/learnerRoute");
 const batch = require("./routes/batchRoute");
 const course = require("./routes/courseRoute");
 const project = require("./routes/projectRoute")
-
+const user = require("./routes/userRoute");
 app.use("/api/v1",learner);
 app.use("/api/v1",batch);
 app.use("/api/v1",course);
 app.use("/api/v1",project);
+app.use("/api/v1",user);
 
 
 //Middleware for error
