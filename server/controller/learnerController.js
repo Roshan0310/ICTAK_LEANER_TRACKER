@@ -2,15 +2,27 @@ const ErrorHandler = require("../utils/errorHandler");
 const catchAsyncError = require("../middleware/catchAsyncErrors");
 const Learner = require("../model/learnerModel");
 const ApiFeatures = require("../utils/apiFeatures");
+const jwt = require("jsonwebtoken");
+
 
 // Adding single learner -- Admin and Training Head
 exports.createLearner = catchAsyncError(async (req, res, next) => {
-  const learner = await Learner.create(req.body);
-
-  res.status(201).json({
-    success: true,
-    learner,
-  });
+  // const learner = await Learner.create(req.body);
+  //   console.log("runned");
+  // res.status(201).json({
+  //   success: true,
+  //   learner,
+  // });
+  jwt.verify(req.body.token,"LearnerToken",async(err,decoded)=>{
+      if(decoded && decoded.email){
+        const learner = await Learner.create(req.body);
+        console.log("runned");
+      res.status(201).json({
+        success: true,
+        learner,
+      });
+      }
+  })
 });
 
 
