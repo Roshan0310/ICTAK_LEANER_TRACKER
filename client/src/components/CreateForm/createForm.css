@@ -1,0 +1,25 @@
+.createForm{
+    width: 110vh;
+    height: 100%;
+    background-color: gray;
+    margin-top: 100px;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    border-radius: 10px;
+    padding: 20px;
+
+}
+.btnn{
+    margin-left: 80px;
+}
+
+.container{
+display: flex;
+width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}

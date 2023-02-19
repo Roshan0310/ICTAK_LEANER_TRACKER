@@ -8,6 +8,10 @@ const projectSchema = new mongoose.Schema({
     projectName:{
         type:String,
         required:[true,"Please enter the project name"]
+    },
+    date: { 
+        type: Date, 
+        default: Date.now() 
     }
 });
 

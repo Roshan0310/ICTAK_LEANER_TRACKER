@@ -8,7 +8,8 @@ const batchSchema = new mongoose.Schema({
     batchName:{
         type:String,
         required:[true,"Please enter the batch name"]
-    }
+    },
+    date: { type: Date, default: Date.now() }
 });
 
 module.exports = mongoose.model("Batch",batchSchema);
