@@ -8,7 +8,8 @@ const courseSchema = new mongoose.Schema({
     courseName:{
         type:String,
         required:[true,"Please enter the course name"]
-    }
+    },
+    date: { type: Date, default: Date.now() }
 });
 
 module.exports = mongoose.model("Course",courseSchema);

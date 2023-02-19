@@ -1,0 +1,10 @@
+.gradient-custom {
+    /* fallback for old browsers */
+    background: rgb(79, 183, 148);
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: rgb(15, 223, 154);
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: rgb(7, 216, 146)
+    }

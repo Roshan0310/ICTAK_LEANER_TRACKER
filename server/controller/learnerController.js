@@ -13,15 +13,23 @@ exports.createLearner = catchAsyncError(async (req, res, next) => {
   //   success: true,
   //   learner,
   // });
-  jwt.verify(req.body.token,"LearnerToken",async(err,decoded)=>{
+  jwt.verify(req.body.token,"LearnerToken",(err,decoded)=>{
       if(decoded && decoded.email){
-        const learner = await Learner.create(req.body);
-        console.log("runned");
-      res.status(201).json({
-        success: true,
-        learner,
-      });
+          let data = new Learner({
+            learnerId:req.body.learnerId,
+            learnerName:req.body.learnerName,
+            courseName:req.body.courseName,
+            project:req.body.project,
+            batch:req.body.batch,
+            courseStatus:req.body.courseStatus,
+            placementStatus:req.body.placementStatus,
+          })
+          data.save()
+          res.json({"status":"success",data})
+      }else{
+        res.json({"status":"Failed... Unuthorized User...!"})
       }
+      
   })
 });
 
