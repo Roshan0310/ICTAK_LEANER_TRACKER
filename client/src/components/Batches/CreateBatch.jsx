@@ -76,7 +76,7 @@ function CreateBatch() {
 <form className="row createForm" onSubmit={formHandler} style={{backgroundColor:"gray"}}>
 
 <div className="heading text-center">
-  <h3>Create Learner</h3>
+  <h3>Create Batch</h3>
 </div>
           <div className="col-md-3">
             

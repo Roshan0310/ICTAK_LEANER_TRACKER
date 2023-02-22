@@ -19,6 +19,8 @@ import UpdateCourse from './components/Courses/UpdateCourse';
 import CreateBatch from './components/Batches/CreateBatch';
 import UpdateBatch from './components/Batches/UpdateBatch';
 import PlacementUpdate from './components/Update/PlacementUpdate';
+import Upload from './components/FileUpload/Upload';
+
 
 
 
@@ -59,6 +61,8 @@ function App() {
         <Route path='/programs' element={<Program/>}/>
        <Route path='/addProgram' element={<AddProgram/>}/>
        <Route path='/updateProject' element={<UpdateProject/>}/>
+
+       <Route path='/upload' element={<Upload/>}/>
 
        
        
