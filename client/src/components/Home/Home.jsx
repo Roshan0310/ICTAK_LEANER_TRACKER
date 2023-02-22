@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Table,Button, Pagination } from 'semantic-ui-react'
+import { Table,Button, Pagination} from 'semantic-ui-react'
 import Swal from 'sweetalert2';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -8,7 +8,8 @@ import { Link } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import "./home.css"
 import Footer from '../Footer/Footer';
-import {MDBBtn} from "mdb-react-ui-kit"
+
+
 
 
 
@@ -17,7 +18,7 @@ function Home() {
     const [apiData,setApiData] = useState([]);
     const[adminvisible,setAdminVisible] = useState(false);
     const [PlacementVisible,setPlacementVisible]= useState(false);
-    const [value,setValue] = useState([]);
+    
    
 
   
@@ -91,15 +92,7 @@ function Home() {
       })
     }
 
-    const handleSearch =  async (e)=>{
-      e.preventDefault();
-      return await axios.get(`http://localhost:4000/api/v1/learners?${value}=`)
-       .then((response) => {
-        setApiData(response.data);
-        setValue("");
-       })
-       .catch((err)=> console.log(err))
-    }
+    
 
     const handlePageClick = async ()=>{
       axios.get(`http://localhost:4000/api/v1/learners?page=2`).then((getData)=>{
@@ -135,25 +128,21 @@ function Home() {
     <div>
     <div className='container'>
      <Navbar/>
-     <form style={{
-      margin:"auto",
-      padding:"15px",
-      maxWidth:"400px",
-      alignContent:"center"
-   }} className="d-flex input-group w-auto" onSubmit={handleSearch}>
-    <input type="text" className='form-control' placeholder='Search learner' value={value} onChange={(e)=> setValue(e.target.value)} />
-    
-      <MDBBtn type='submit' color='dark'>Search</MDBBtn>
-      <MDBBtn className='mx-2' color='info' >Reset</MDBBtn>
-      
-      
-     </form>
-     <div className="row1">
+     
+     <form action="" className='formButton'>
       <Link to="/create">
-    {adminvisible && <Button className="btn btn-secondary btn11 btn-lg">Add Learner</Button>}
+    {adminvisible && <Button className="btn btn-secondary btn11 btn-lg " >Add Learner</Button>}
   </Link>
-      </div>
+  
+  <Link to="/upload">
+    {adminvisible && <Button className="btn btn-secondary btn-lg ">Csv Upload</Button>}
+  </Link>
+  </form>
+
+     
+      
          <Table celled>
+          
     <Table.Header>
       <Table.Row>
         <Table.HeaderCell style={{backgroundColor:"#581845", color:"#ffffff"}}>Learner Id</Table.HeaderCell>
@@ -208,6 +197,7 @@ function Home() {
   <ToastContainer />
   
     </div>
+    
 
    
 <div className="paginationBox">
@@ -217,6 +207,7 @@ onPageChange={handlePageClick}
 boundaryRange={1}
 />
 </div>
+
     <Footer/>
     </div>
   )

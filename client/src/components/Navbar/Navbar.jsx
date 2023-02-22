@@ -4,6 +4,7 @@ import "./navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 import { NavDropdown } from "react-bootstrap";
 import * as Icon from 'react-bootstrap-icons';
+import img from "../assets/ictak.png"
 
 function Navbar() {
     const user = sessionStorage.getItem("name")
@@ -66,7 +67,7 @@ function Navbar() {
 {adminvisible &&
           <Link to="/programs">
           <li class="list-group-item py-1">
-            <a href='/programs' class="text-reset"><i class="fa-solid fa-bars-progress"></i>Project</a>
+            <a href='/programs' class="text-reset"><i class="fa-solid fa-bars-progress"></i> <br /> Project</a>
           </li>
           </Link>
 }
@@ -93,7 +94,9 @@ function Navbar() {
       
 
       <a class="navbar-brand" href='/'>
-      <div style={{marginTop:"1.3rem",fontSize:20}}>
+        
+      <div style={{fontSize:15}}>
+      <img src={img} alt="ICTAK Logo" style={{width:"50px",height:"45px",borderRadius:"15px",padding:"1px"}}/>
           	ICTAK Learner Tracker
           </div>
       </a>
@@ -139,6 +142,8 @@ function Navbar() {
 <main style={{marginTop:"58px"}}>
   <div class="container pt-4"></div>
 </main>
+
+
 
 
 
